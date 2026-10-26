@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <!-- MTP standalone runners must produce an executable -->
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
     <OutputType>Exe</OutputType>
-
-    <!-- Enable Microsoft.Testing.Platform -->
-    <EnableMicrosoftTestingPlatform>true</EnableMicrosoftTestingPlatform>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
 
     <!-- Target only modern supported .NET LTS and Current runtimes -->
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
@@ -23,7 +20,6 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" Version="2.5.1" />
     <PackageReference Include="xunit.v3" Version="4.0.2" />
 
     <!-- WCF packages providing System.ServiceModel.EndpointAddress -->
