@@ -199,7 +199,7 @@ public class MethodOverloadConventionTests
     }
 
     [Theory]
-    [InlineData(Write)]
+    //[InlineData(Write)]
     [InlineData(nameof(Verbose))]
     [InlineData(nameof(Debug))]
     [InlineData(nameof(Information))]

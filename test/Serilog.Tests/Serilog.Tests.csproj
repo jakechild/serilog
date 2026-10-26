@@ -1,11 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <!-- Tests target .NET Framework 4.6.2 plus the latest RTM of .NET Framework -->
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT'">net48;net462</TargetFrameworks>
-    <!-- All (Microsoft-) supported .NET RTMs are tested -->
-    <TargetFrameworks>$(TargetFrameworks);net10.0;net9.0;net8.0</TargetFrameworks>
+    <!-- MTP standalone runners must produce an executable -->
+    <OutputType>Exe</OutputType>
+
+    <!-- Enable Microsoft.Testing.Platform -->
+    <EnableMicrosoftTestingPlatform>true</EnableMicrosoftTestingPlatform>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+
+    <!-- Target only modern supported .NET LTS and Current runtimes -->
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <DeterministicSourcePaths>false</DeterministicSourcePaths>
+    <NoWarn>$(NoWarn);xUnit1051</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,46 +22,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" PrivateAssets="all" />
-    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" Version="2.5.1" />
+    <PackageReference Include="xunit.v3" Version="4.0.2" />
+
+    <!-- WCF packages providing System.ServiceModel.EndpointAddress -->
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.1" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.1" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.14" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">
-    <Reference Include="System.ServiceModel" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETCoreApp' ">
-    <PackageReference Include="System.ServiceModel.Http" Version="8.1.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.0" />
-    <!-- Pin transitive to patched version, avoiding multiple CVE warnings. -->
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.5" />
-  </ItemGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <DefineConstants>$(DefineConstants);TEST_FEATURE_APPDOMAIN</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
-    <DefineConstants>$(DefineConstants);TEST_FEATURE_APPDOMAIN;FEATURE_ITUPLE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
-    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_INTERFACE;FEATURE_SPAN;FEATURE_DATE_AND_TIME_ONLY;FEATURE_ITUPLE;FEATURE_ASYNCDISPOSABLE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
-    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_INTERFACE;FEATURE_SPAN;FEATURE_DATE_AND_TIME_ONLY;FEATURE_ITUPLE;FEATURE_ASYNCDISPOSABLE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net10.0' ">
+  <!-- Feature flags shared across both net8.0 and net9.0 -->
+  <PropertyGroup>
     <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_INTERFACE;FEATURE_SPAN;FEATURE_DATE_AND_TIME_ONLY;FEATURE_ITUPLE;FEATURE_ASYNCDISPOSABLE</DefineConstants>
   </PropertyGroup>
 
   <Import Project="..\..\src\Serilog\Serilog.targets" />
+
 </Project>

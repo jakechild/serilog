@@ -619,11 +619,13 @@ public class JsonValueFormatter : LogEventPropertyValueVisitor<TextWriter, bool>
         if (anyEscaped)
         {
             if (cleanSegmentStart != str.Length)
+            {
 #if FEATURE_SPAN
                 output.Write(str.AsSpan().Slice(cleanSegmentStart));
 #else
                 output.Write(str.Substring(cleanSegmentStart));
 #endif
+            }
         }
         else
         {
