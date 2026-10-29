@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Core;
-
 /// <summary>
 /// Determine how, when destructuring, a supplied value is represented
 /// as a complex log event property.

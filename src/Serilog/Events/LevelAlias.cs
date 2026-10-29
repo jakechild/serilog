@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Events;
-
 /// <summary>
 /// Descriptive aliases for <see cref="LogEventLevel"/>.
 /// </summary>
@@ -26,12 +24,10 @@ public static class LevelAlias
     /// The least significant level of event.
     /// </summary>
     public const LogEventLevel Minimum = LogEventLevel.Verbose;
-
     /// <summary>
     /// The most significant level of event.
     /// </summary>
     public const LogEventLevel Maximum = LogEventLevel.Fatal;
-
     /// <summary>
     /// A value that, when used as a "minimum" level, will result in no
     /// events being emitted.

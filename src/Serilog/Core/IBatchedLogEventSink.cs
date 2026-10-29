@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Core;
-
 /// <summary>
 /// A destination that accepts events in batches. Many sinks gain a performance advantage by handling events in batches,
 /// for example to combine multiple events into a single network request to a remote collector. Because the client
@@ -30,7 +28,6 @@ public interface IBatchedLogEventSink
     /// <remarks>Implementers should allow exceptions to propagate when batches fail. The batching infrastructure
     /// handles exception handling, diagnostics, and retries.</remarks>
     Task EmitBatchAsync(IReadOnlyCollection<LogEvent> batch);
-
     /// <summary>
     /// Allows sinks to perform periodic work without requiring additional threads
     /// or timers (thus avoiding additional flush/shut-down complexity).
@@ -41,6 +38,6 @@ public interface IBatchedLogEventSink
         return Task.CompletedTask;
     }
 #else
-        ;
+    ;
 #endif
 }

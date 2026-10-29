@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Debugging;
-
 /// <summary>
 /// May be thrown by log event sinks when a failure occurs. Should not be used in cases
 /// where the exception would propagate out to callers.
@@ -24,8 +22,7 @@ public class LoggingFailedException : Exception
     /// Construct a <see cref="LoggingFailedException"/> to communicate a logging failure.
     /// </summary>
     /// <param name="message">A message describing the logging failure.</param>
-    public LoggingFailedException(string message)
-        : base(message)
+    public LoggingFailedException(string message) : base(message)
     {
     }
 }

@@ -11,18 +11,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Configuration;
-
 /// <summary>
 /// Controls audit sink configuration.
 /// </summary>
 public class LoggerAuditSinkConfiguration
 {
     readonly LoggerSinkConfiguration _sinkConfiguration;
-
     internal LoggerAuditSinkConfiguration(LoggerConfiguration loggerConfiguration, Action<ILogEventSink> addSink)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "7134c973-bf1e-4ce3-aff0-7452d26de331" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         _sinkConfiguration = new(loggerConfiguration, addSink);
     }
 
@@ -35,12 +50,27 @@ public class LoggerAuditSinkConfiguration
     /// <param name="levelSwitch">A switch allowing the pass-through minimum level
     /// to be changed at runtime.</param>
     /// <returns>Configuration object allowing method chaining.</returns>
-    public LoggerConfiguration Sink(
-        ILogEventSink logEventSink,
-        LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum,
-        // ReSharper disable once MethodOverloadWithOptionalParameter
-        LoggingLevelSwitch? levelSwitch = null)
+    public LoggerConfiguration Sink(ILogEventSink logEventSink, LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum, // ReSharper disable once MethodOverloadWithOptionalParameter
+    LoggingLevelSwitch? levelSwitch = null)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "e76dc2f6-f739-49c4-8541-a4b3fb2e1a19" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return _sinkConfiguration.Sink(logEventSink, restrictedToMinimumLevel, levelSwitch);
     }
 
@@ -53,11 +83,27 @@ public class LoggerAuditSinkConfiguration
     /// <param name="levelSwitch">A switch allowing the pass-through minimum level
     /// to be changed at runtime.</param>
     /// <returns>Configuration object allowing method chaining.</returns>
-    public LoggerConfiguration Sink<TSink>(
-        LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum,
-        LoggingLevelSwitch? levelSwitch = null)
+    public LoggerConfiguration Sink<TSink>(LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum, LoggingLevelSwitch? levelSwitch = null)
         where TSink : ILogEventSink, new()
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "7a426fb4-f991-4107-b2ca-5e66be2d8706" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return _sinkConfiguration.Sink<TSink>(restrictedToMinimumLevel, levelSwitch);
     }
 
@@ -73,11 +119,26 @@ public class LoggerAuditSinkConfiguration
     /// <param name="levelSwitch">A switch allowing the pass-through minimum level
     /// to be changed at runtime.</param>
     /// <returns>Configuration object allowing method chaining.</returns>
-    public LoggerConfiguration Logger(
-        Action<LoggerConfiguration> configureLogger,
-        LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum,
-        LoggingLevelSwitch? levelSwitch = null)
+    public LoggerConfiguration Logger(Action<LoggerConfiguration> configureLogger, LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum, LoggingLevelSwitch? levelSwitch = null)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "ec528bd8-6c52-4374-9498-4b02a3280a98" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return _sinkConfiguration.Logger(configureLogger, restrictedToMinimumLevel, levelSwitch);
     }
 
@@ -92,10 +153,26 @@ public class LoggerAuditSinkConfiguration
     /// <param name="restrictedToMinimumLevel">The minimum level for
     /// events passed through the sink.</param>
     /// <returns>Configuration object allowing method chaining.</returns>
-    public LoggerConfiguration Logger(
-        ILogger logger,
-        LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum)
+    public LoggerConfiguration Logger(ILogger logger, LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "43821830-c6d7-4dc8-8773-dc5be9e8f49b" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return _sinkConfiguration.Logger(logger, restrictedToMinimumLevel);
     }
 }

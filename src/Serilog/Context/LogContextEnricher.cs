@@ -11,13 +11,29 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Context;
-
 sealed class LogContextEnricher : ILogEventEnricher
 {
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "2a0377c8-e460-4312-bfda-553a5fef1b1e" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         LogContext.Enrich(logEvent, propertyFactory);
     }
 }

@@ -1,5 +1,4 @@
 namespace Serilog.Core;
-
 /// <summary>
 /// Supports the policy-driven construction of <see cref="LogEventPropertyValue"/>s given
 /// regular .NET objects.

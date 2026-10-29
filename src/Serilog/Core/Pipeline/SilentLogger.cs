@@ -11,21 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Core.Pipeline;
-
 sealed class SilentLogger : ILogger
 {
     public ILogger ForContext(ILogEventEnricher enricher) => this;
-
     public ILogger ForContext(IEnumerable<ILogEventEnricher> enrichers) => this;
-
     public ILogger ForContext(string propertyName, object? value, bool destructureObjects = false) => this;
-
     public ILogger ForContext<TSource>() => this;
-
     public ILogger ForContext(Type source) => this;
-
     public void Write(LogEvent logEvent)
     {
     }
@@ -46,7 +39,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Write(LogEventLevel level, string messageTemplate, params object?[]? propertyValues)
+    public void Write(LogEventLevel level, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -66,12 +59,11 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Write(LogEventLevel level, Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Write(LogEventLevel level, Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
     public bool IsEnabled(LogEventLevel level) => false;
-
     public void Verbose(string messageTemplate)
     {
     }
@@ -88,7 +80,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Verbose(string messageTemplate, params object?[]? propertyValues)
+    public void Verbose(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -108,7 +100,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Verbose(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Verbose(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -128,7 +120,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Debug(string messageTemplate, params object?[]? propertyValues)
+    public void Debug(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -148,7 +140,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Debug(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Debug(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -168,7 +160,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Information(string messageTemplate, params object?[]? propertyValues)
+    public void Information(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -188,7 +180,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Information(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Information(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -208,7 +200,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Warning(string messageTemplate, params object?[]? propertyValues)
+    public void Warning(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -228,7 +220,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Warning(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Warning(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -248,7 +240,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Error(string messageTemplate, params object?[]? propertyValues)
+    public void Error(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -268,7 +260,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Error(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Error(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -288,7 +280,7 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Fatal(string messageTemplate, params object?[]? propertyValues)
+    public void Fatal(string messageTemplate, params object? []? propertyValues)
     {
     }
 
@@ -308,21 +300,111 @@ sealed class SilentLogger : ILogger
     {
     }
 
-    public void Fatal(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    public void Fatal(Exception? exception, string messageTemplate, params object? []? propertyValues)
     {
     }
 
     [MessageTemplateFormatMethod("messageTemplate")]
-    public bool BindMessageTemplate(string messageTemplate, object?[]? propertyValues, [NotNullWhen(true)] out MessageTemplate? parsedTemplate, [NotNullWhen(true)] out IEnumerable<LogEventProperty>? boundProperties)
+    public bool BindMessageTemplate(string messageTemplate, object? []? propertyValues, [NotNullWhen(true)] out MessageTemplate? parsedTemplate, [NotNullWhen(true)] out IEnumerable<LogEventProperty>? boundProperties)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "aedf36ba-ed6f-49bd-b505-fa36db079d98" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         parsedTemplate = null;
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "834491d0-ebeb-4365-8257-4f6d8691e11d" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         boundProperties = null;
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "dcb696c4-60df-4cf5-9f3d-fde6e3055e77" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return false;
     }
 
     public bool BindProperty(string? propertyName, object? value, bool destructureObjects, [NotNullWhen(true)] out LogEventProperty? property)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "7a2f359a-6f89-4707-af83-1e8b509702a2" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         property = null;
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "00402448-6d77-4b1e-8cf7-35d92ee59112" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return false;
     }
 }

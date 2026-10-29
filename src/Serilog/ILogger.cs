@@ -11,13 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 #if FEATURE_DEFAULT_INTERFACE
 using System.Diagnostics;
 #endif
-
 namespace Serilog;
-
 /// <summary>
 /// The core Serilog logging API, used for writing log events.
 /// </summary>
@@ -39,7 +36,6 @@ public interface ILogger
     private static readonly object[] NoPropertyValues = Array.Empty<object>();
     private static readonly Logger DefaultLoggerImpl = new LoggerConfiguration().CreateLogger();
 #endif
-
     /// <summary>
     /// Create a logger that enriches log events via the provided enrichers.
     /// </summary>
@@ -57,7 +53,6 @@ public interface ILogger
             .ForContext(enricher)
 #endif
     ;
-
     /// <summary>
     /// Create a logger that enriches log events via the provided enrichers.
     /// </summary>
@@ -72,9 +67,8 @@ public interface ILogger
         return ForContext(new SafeAggregateEnricher(enrichers));
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Create a logger that enriches log events with the specified property.
     /// </summary>
@@ -95,7 +89,6 @@ public interface ILogger
             .ForContext(propertyName, value, destructureObjects)
 #endif
     ;
-
     /// <summary>
     /// Create a logger that marks log events as being from the specified
     /// source type.
@@ -107,7 +100,6 @@ public interface ILogger
         => ForContext(typeof(TSource))
 #endif
     ;
-
     /// <summary>
     /// Create a logger that marks log events as being from the specified
     /// source type.
@@ -123,15 +115,13 @@ public interface ILogger
         return ForContext(Constants.SourceContextPropertyName, source.FullName);
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write an event to the log.
     /// </summary>
     /// <param name="logEvent">The event to write.</param>
     void Write(LogEvent logEvent);
-
     /// <summary>
     /// Write a log event with the specified level.
     /// </summary>
@@ -148,9 +138,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level.
     /// </summary>
@@ -168,9 +157,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level.
     /// </summary>
@@ -189,9 +177,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level.
     /// </summary>
@@ -211,9 +198,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level.
     /// </summary>
@@ -221,12 +207,11 @@ public interface ILogger
     /// <param name="messageTemplate"></param>
     /// <param name="propertyValues"></param>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Write(LogEventLevel level, string messageTemplate, params object?[]? propertyValues)
+    void Write(LogEventLevel level, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(level, (Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the specified level and associated exception.
     /// </summary>
@@ -244,9 +229,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level and associated exception.
     /// </summary>
@@ -265,9 +249,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level and associated exception.
     /// </summary>
@@ -287,9 +270,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level and associated exception.
     /// </summary>
@@ -310,9 +292,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Write a log event with the specified level and associated exception.
     /// </summary>
@@ -324,7 +305,7 @@ public interface ILogger
 #if FEATURE_DEFAULT_INTERFACE
     [CustomDefaultMethodImplementation]
 #endif
-    void Write(LogEventLevel level, Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Write(LogEventLevel level, Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
     {
         if (!IsEnabled(level)) return;
@@ -344,9 +325,8 @@ public interface ILogger
         }
     }
 #else
-        ;
+    ;
 #endif
-
     /// <summary>
     /// Determine if events at the specified level will be passed through
     /// to the log sinks.
@@ -361,7 +341,6 @@ public interface ILogger
         => true
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level.
     /// </summary>
@@ -375,7 +354,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level.
     /// </summary>
@@ -390,7 +368,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level.
     /// </summary>
@@ -406,7 +383,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level.
     /// </summary>
@@ -423,7 +399,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -433,12 +408,11 @@ public interface ILogger
     /// Log.Verbose("Staring into space, wondering if we're alone.");
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Verbose(string messageTemplate, params object?[]? propertyValues)
+    void Verbose(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Verbose((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -453,7 +427,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -469,7 +442,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -486,7 +458,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -504,7 +475,6 @@ public interface ILogger
         => Write(LogEventLevel.Verbose, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Verbose"/> level and associated exception.
     /// </summary>
@@ -515,12 +485,11 @@ public interface ILogger
     /// Log.Verbose(ex, "Staring into space, wondering where this comet came from.");
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Verbose(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Verbose(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Verbose, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level.
     /// </summary>
@@ -534,7 +503,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level.
     /// </summary>
@@ -549,7 +517,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level.
     /// </summary>
@@ -565,7 +532,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level.
     /// </summary>
@@ -582,7 +548,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -592,12 +557,11 @@ public interface ILogger
     /// Log.Debug("Starting up at {StartedAt}.", DateTime.Now);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Debug(string messageTemplate, params object?[]? propertyValues)
+    void Debug(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Debug((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -612,7 +576,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -628,7 +591,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -645,7 +607,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -663,7 +624,6 @@ public interface ILogger
         => Write(LogEventLevel.Debug, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Debug"/> level and associated exception.
     /// </summary>
@@ -674,12 +634,11 @@ public interface ILogger
     /// Log.Debug(ex, "Swallowing a mundane exception.");
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Debug(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Debug(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Debug, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level.
     /// </summary>
@@ -693,7 +652,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level.
     /// </summary>
@@ -708,7 +666,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level.
     /// </summary>
@@ -724,7 +681,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level.
     /// </summary>
@@ -741,7 +697,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -751,12 +706,11 @@ public interface ILogger
     /// Log.Information("Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Information(string messageTemplate, params object?[]? propertyValues)
+    void Information(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Information((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -771,7 +725,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -787,7 +740,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -804,7 +756,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -822,7 +773,6 @@ public interface ILogger
         => Write(LogEventLevel.Information, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Information"/> level and associated exception.
     /// </summary>
@@ -833,12 +783,11 @@ public interface ILogger
     /// Log.Information(ex, "Processed {RecordCount} records in {TimeMS}.", records.Length, sw.ElapsedMilliseconds);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Information(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Information(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Information, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level.
     /// </summary>
@@ -852,7 +801,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level.
     /// </summary>
@@ -867,7 +815,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level.
     /// </summary>
@@ -883,7 +830,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level.
     /// </summary>
@@ -900,7 +846,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -910,12 +855,11 @@ public interface ILogger
     /// Log.Warning("Skipped {SkipCount} records.", skippedRecords.Length);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Warning(string messageTemplate, params object?[]? propertyValues)
+    void Warning(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Warning((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -930,7 +874,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -946,7 +889,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -963,7 +905,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -981,7 +922,6 @@ public interface ILogger
         => Write(LogEventLevel.Warning, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Warning"/> level and associated exception.
     /// </summary>
@@ -992,12 +932,11 @@ public interface ILogger
     /// Log.Warning(ex, "Skipped {SkipCount} records.", skippedRecords.Length);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Warning(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Warning(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Warning, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level.
     /// </summary>
@@ -1011,7 +950,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level.
     /// </summary>
@@ -1026,7 +964,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level.
     /// </summary>
@@ -1042,7 +979,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level.
     /// </summary>
@@ -1059,7 +995,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1069,12 +1004,11 @@ public interface ILogger
     /// Log.Error("Failed {ErrorCount} records.", brokenRecords.Length);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Error(string messageTemplate, params object?[]? propertyValues)
+    void Error(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Error((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1089,7 +1023,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1105,7 +1038,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1122,7 +1054,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1140,7 +1071,6 @@ public interface ILogger
         => Write(LogEventLevel.Error, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Error"/> level and associated exception.
     /// </summary>
@@ -1151,12 +1081,11 @@ public interface ILogger
     /// Log.Error(ex, "Failed {ErrorCount} records.", brokenRecords.Length);
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Error(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Error(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Error, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level.
     /// </summary>
@@ -1170,7 +1099,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level.
     /// </summary>
@@ -1185,7 +1113,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level.
     /// </summary>
@@ -1201,7 +1128,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level.
     /// </summary>
@@ -1218,7 +1144,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1228,12 +1153,11 @@ public interface ILogger
     /// Log.Fatal("Process terminating.");
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Fatal(string messageTemplate, params object?[]? propertyValues)
+    void Fatal(string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Fatal((Exception?)null, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1248,7 +1172,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, exception, messageTemplate, NoPropertyValues)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1264,7 +1187,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, exception, messageTemplate, propertyValue)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1281,7 +1203,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, exception, messageTemplate, propertyValue0, propertyValue1)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1299,7 +1220,6 @@ public interface ILogger
         => Write(LogEventLevel.Fatal, exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2)
 #endif
     ;
-
     /// <summary>
     /// Write a log event with the <see cref="LogEventLevel.Fatal"/> level and associated exception.
     /// </summary>
@@ -1310,12 +1230,11 @@ public interface ILogger
     /// Log.Fatal(ex, "Process terminating.");
     /// </code></example>
     [MessageTemplateFormatMethod("messageTemplate")]
-    void Fatal(Exception? exception, string messageTemplate, params object?[]? propertyValues)
+    void Fatal(Exception? exception, string messageTemplate, params object? []? propertyValues)
 #if FEATURE_DEFAULT_INTERFACE
         => Write(LogEventLevel.Fatal, exception, messageTemplate, propertyValues)
 #endif
     ;
-
     /// <summary>
     /// Uses configured scalar conversion and destructuring rules to bind a set of properties to a
     /// message template. Returns false if the template or values are invalid (<c>ILogger</c>
@@ -1340,14 +1259,11 @@ public interface ILogger
 #if FEATURE_DEFAULT_INTERFACE
     [CustomDefaultMethodImplementation]
 #endif
-    bool BindMessageTemplate(string messageTemplate, object?[]? propertyValues,
-        [NotNullWhen(true)] out MessageTemplate? parsedTemplate,
-        [NotNullWhen(true)] out IEnumerable<LogEventProperty>? boundProperties)
+    bool BindMessageTemplate(string messageTemplate, object? []? propertyValues, [NotNullWhen(true)] out MessageTemplate? parsedTemplate, [NotNullWhen(true)] out IEnumerable<LogEventProperty>? boundProperties)
 #if FEATURE_DEFAULT_INTERFACE
         => DefaultLoggerImpl.BindMessageTemplate(messageTemplate, propertyValues, out parsedTemplate, out boundProperties)
 #endif
     ;
-
     /// <summary>
     /// Uses configured scalar conversion and destructuring rules to bind a property value to its captured
     /// representation.

@@ -1,6 +1,4 @@
-
 namespace Serilog.Capturing;
-
 static class TrimConfiguration
 {
     /// <summary>
@@ -9,6 +7,5 @@ static class TrimConfiguration
     /// disabled, Serilog will not be able to destructure anonymous types, but will still be able to log
     /// them as scalar values.
     /// </summary>
-    public static bool IsStructureValueSupported { get; } =
-        !AppContext.TryGetSwitch("Serilog.Capturing.IsStructureValueSupported", out var isEnabled) || isEnabled;
+    public static bool IsStructureValueSupported { get; } = !AppContext.TryGetSwitch("Serilog.Capturing.IsStructureValueSupported", out var isEnabled) || isEnabled;
 }

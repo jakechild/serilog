@@ -1,5 +1,4 @@
 namespace Serilog.Core;
-
 /// <summary>
 /// Determine how a simple value is carried through the logging
 /// pipeline as an immutable <see cref="ScalarValue"/>.

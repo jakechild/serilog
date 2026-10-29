@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Parsing;
-
 /// <summary>
 /// A structure representing the alignment settings to apply when rendering a property.
 /// </summary>
@@ -26,7 +24,43 @@ public readonly struct Alignment
     /// <param name="width">The width of the text, in characters.</param>
     public Alignment(AlignmentDirection direction, int width)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "a44de2bd-8713-4122-befa-8429f0917898" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         Direction = direction;
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "71dd34eb-b2d8-4107-bd96-a98880192947" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         Width = width;
     }
 
@@ -34,7 +68,6 @@ public readonly struct Alignment
     /// The text alignment direction.
     /// </summary>
     public AlignmentDirection Direction { get; }
-
     /// <summary>
     /// The width of the text.
     /// </summary>

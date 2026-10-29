@@ -11,13 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-
-
 // ReSharper disable VirtualMemberNeverOverridden.Global
-
 namespace Serilog.Data;
-
 /// <summary>
 /// An abstract base class for visitors that walk data in the
 /// <see cref="LogEventPropertyValue"/> format. Subclasses, by
@@ -44,20 +39,207 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     /// <exception cref="ArgumentNullException">When <paramref name="value"/> is <code>null</code></exception>
     protected virtual TResult Visit(TState state, LogEventPropertyValue value)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "56d820ca-5dfb-46df-a833-436d4cb5b015" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         Guard.AgainstNull(value);
-
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "23540d4a-d80e-444e-9039-102f0f880da6" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         if (value is ScalarValue sv)
+        {
+            new System.Action(() =>
+            {
+                using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+                if (m.WaitOne(3000))
+                {
+                    try
+                    {
+                        global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "9ad55b74-a69b-4b1d-8f1f-82489442ed1c" + global::System.Environment.NewLine);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        m.ReleaseMutex();
+                    }
+                }
+            })();
             return VisitScalarValue(state, sv);
+        }
 
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "4b7eee7a-ba8e-446f-af98-a8c3f56f76fb" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         if (value is SequenceValue seqv)
+        {
+            new System.Action(() =>
+            {
+                using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+                if (m.WaitOne(3000))
+                {
+                    try
+                    {
+                        global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "829aaa33-a4ff-43f5-8762-2ce5dac19e15" + global::System.Environment.NewLine);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        m.ReleaseMutex();
+                    }
+                }
+            })();
             return VisitSequenceValue(state, seqv);
+        }
 
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "16a2d87a-e1db-43b8-9bcd-9bb349b3fa1e" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         if (value is StructureValue strv)
+        {
+            new System.Action(() =>
+            {
+                using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+                if (m.WaitOne(3000))
+                {
+                    try
+                    {
+                        global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "4506f5cb-4435-4108-9d42-ae893fbabf72" + global::System.Environment.NewLine);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        m.ReleaseMutex();
+                    }
+                }
+            })();
             return VisitStructureValue(state, strv);
+        }
 
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "dd830e67-65b4-491a-963f-35bb17794d8b" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         if (value is DictionaryValue dictv)
+        {
+            new System.Action(() =>
+            {
+                using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+                if (m.WaitOne(3000))
+                {
+                    try
+                    {
+                        global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "01cbfd5f-5bef-4a1e-bb50-ab66f47e3595" + global::System.Environment.NewLine);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        m.ReleaseMutex();
+                    }
+                }
+            })();
             return VisitDictionaryValue(state, dictv);
+        }
 
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "cd92aede-748b-4852-ae16-1b0253b6e4d3" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return VisitUnsupportedValue(state, value);
     }
 
@@ -68,7 +250,6 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     /// <param name="scalar">The value to visit.</param>
     /// <returns>The result of visiting <paramref name="scalar"/>.</returns>
     protected abstract TResult VisitScalarValue(TState state, ScalarValue scalar);
-
     /// <summary>
     /// Visit a <see cref="SequenceValue"/> value.
     /// </summary>
@@ -76,7 +257,6 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     /// <param name="sequence">The value to visit.</param>
     /// <returns>The result of visiting <paramref name="sequence"/>.</returns>
     protected abstract TResult VisitSequenceValue(TState state, SequenceValue sequence);
-
     /// <summary>
     /// Visit a <see cref="StructureValue"/> value.
     /// </summary>
@@ -84,7 +264,6 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     /// <param name="structure">The value to visit.</param>
     /// <returns>The result of visiting <paramref name="structure"/>.</returns>
     protected abstract TResult VisitStructureValue(TState state, StructureValue structure);
-
     /// <summary>
     /// Visit a <see cref="DictionaryValue"/> value.
     /// </summary>
@@ -92,7 +271,6 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     /// <param name="dictionary">The value to visit.</param>
     /// <returns>The result of visiting <paramref name="dictionary"/>.</returns>
     protected abstract TResult VisitDictionaryValue(TState state, DictionaryValue dictionary);
-
     /// <summary>
     /// Visit a value of an unsupported type. Always throws <see cref="NotSupportedException"/>, when is not overridden.
     /// </summary>
@@ -104,7 +282,43 @@ public abstract class LogEventPropertyValueVisitor<TState, TResult>
     // ReSharper disable once UnusedParameter.Global
     protected virtual TResult VisitUnsupportedValue(TState state, LogEventPropertyValue value)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "589dd160-9ca4-471a-9b43-935957f0bf31" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         Guard.AgainstNull(value);
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "f341c781-ebd3-4d83-8d08-b582404a05ec" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         throw new NotSupportedException($"The value {value} is not of a type supported by this visitor.");
     }
 }

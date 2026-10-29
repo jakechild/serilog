@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Rendering;
-
 static class Casing
 {
     /// <summary>
@@ -23,6 +21,24 @@ static class Casing
     /// <returns>The provided <paramref name="value"/> with formatting applied</returns>
     public static string Format(string value, string? format = null)
     {
+        new System.Action(() =>
+        {
+            using var m = new System.Threading.Mutex(false, @"Global\sbfl_coverage_lock");
+            if (m.WaitOne(3000))
+            {
+                try
+                {
+                    global::System.IO.File.AppendAllText("C:\\Repos\\CSharpFLPublic\\SBFLApp\\bin\\Debug\\net10.0\\Coverage\\__sbfl_current_test.coverage.tmp", "dfde97f9-8fcf-47ca-9c3f-b31c1dbf7664" + global::System.Environment.NewLine);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m.ReleaseMutex();
+                }
+            }
+        })();
         return format switch
         {
             "u" => value.ToUpperInvariant(),

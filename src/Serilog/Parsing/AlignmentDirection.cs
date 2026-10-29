@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Parsing;
-
 /// <summary>
 /// Defines the direction of the alignment.
 /// </summary>
@@ -23,7 +21,6 @@ public enum AlignmentDirection
     /// Text will be left-aligned.
     /// </summary>
     Left,
-
     /// <summary>
     /// Text will be right-aligned.
     /// </summary>

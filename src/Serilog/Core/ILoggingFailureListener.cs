@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Core;
-
 /// <summary>
 /// Implementers can be notified of various failure conditions in the Serilog pipeline.
 /// </summary>
@@ -28,10 +26,5 @@ public interface ILoggingFailureListener
     /// <param name="message">A description of the failure.</param>
     /// <param name="events">Events associated with the failure.</param>
     /// <param name="exception">The exception triggering the failure, if any.</param>
-    void OnLoggingFailed(
-        object sender,
-        LoggingFailureKind kind,
-        string message,
-        IReadOnlyCollection<LogEvent>? events,
-        Exception? exception);
+    void OnLoggingFailed(object sender, LoggingFailureKind kind, string message, IReadOnlyCollection<LogEvent>? events, Exception? exception);
 }

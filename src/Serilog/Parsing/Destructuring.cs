@@ -11,9 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 namespace Serilog.Parsing;
-
 /// <summary>
 /// Instructs the logger on how to store information about provided
 /// parameters.
@@ -24,12 +22,10 @@ public enum Destructuring
     /// Convert known types and objects to scalars, arrays to sequences.
     /// </summary>
     Default,
-
     /// <summary>
     /// Convert all types to scalar strings. Prefix name with '$'.
     /// </summary>
     Stringify,
-
     /// <summary>
     /// Convert known types to scalars, destructure objects and collections
     /// into sequences and structures. Prefix name with '@'.
