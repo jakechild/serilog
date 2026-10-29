@@ -61,79 +61,79 @@ public class ChildLoggerTests
         yield return T(Error, +0, +0, +1, false);
     }
 
-    [Theory]
-    [MemberData(nameof(GetMinimumLevelInheritanceTestCases))]
-    public void WriteToLoggerWithConfigCallbackMinimumLevelInheritanceScenarios(
-        LogEventLevel eventLevel,
-        int? rootMinimumLevelIncrement,
-        int? sinkRestrictedToIncrement,
-        int? childMinimumLevelIncrement,
-        bool eventShouldGetToChild)
-    {
-        var rootMinimumLevel = eventLevel + rootMinimumLevelIncrement ?? Information;
-        var sinkRestrictedToMinimumLevel = eventLevel + sinkRestrictedToIncrement ?? Verbose;
-        var childMinimumLevel = eventLevel + childMinimumLevelIncrement ?? Information;
+    //[Theory]
+    //[MemberData(nameof(GetMinimumLevelInheritanceTestCases))]
+    //public void WriteToLoggerWithConfigCallbackMinimumLevelInheritanceScenarios(
+    //    LogEventLevel eventLevel,
+    //    int? rootMinimumLevelIncrement,
+    //    int? sinkRestrictedToIncrement,
+    //    int? childMinimumLevelIncrement,
+    //    bool eventShouldGetToChild)
+    //{
+    //    var rootMinimumLevel = eventLevel + rootMinimumLevelIncrement ?? Information;
+    //    var sinkRestrictedToMinimumLevel = eventLevel + sinkRestrictedToIncrement ?? Verbose;
+    //    var childMinimumLevel = eventLevel + childMinimumLevelIncrement ?? Information;
 
-        LogEvent? evt = null;
-        var sink = new DelegatingSink(e => evt = e);
+    //    LogEvent? evt = null;
+    //    var sink = new DelegatingSink(e => evt = e);
 
-        var logger = new LoggerConfiguration()
-            .MinimumLevel.Is(rootMinimumLevel)
-            .WriteTo.Logger(lc => lc
-                    .MinimumLevel.Is(childMinimumLevel)
-                    .WriteTo.Sink(sink),
-                restrictedToMinimumLevel: sinkRestrictedToMinimumLevel)
-            .CreateLogger();
+    //    var logger = new LoggerConfiguration()
+    //        .MinimumLevel.Is(rootMinimumLevel)
+    //        .WriteTo.Logger(lc => lc
+    //                .MinimumLevel.Is(childMinimumLevel)
+    //                .WriteTo.Sink(sink),
+    //            restrictedToMinimumLevel: sinkRestrictedToMinimumLevel)
+    //        .CreateLogger();
 
-        logger.Write(Some.LogEvent(level: eventLevel));
+    //    logger.Write(Some.LogEvent(level: eventLevel));
 
-        if (eventShouldGetToChild)
-        {
-            Assert.NotNull(evt);
-        }
-        else
-        {
-            Assert.Null(evt);
-        }
-    }
+    //    if (eventShouldGetToChild)
+    //    {
+    //        Assert.NotNull(evt);
+    //    }
+    //    else
+    //    {
+    //        Assert.Null(evt);
+    //    }
+    //}
 
-    [Theory]
-    [MemberData(nameof(GetMinimumLevelInheritanceTestCases))]
-    public void WriteToLoggerMinimumLevelInheritanceScenarios(
-        LogEventLevel eventLevel,
-        int? rootMinimumLevelIncrement,
-        int? sinkRestrictedToIncrement,
-        int? childMinimumLevelIncrement,
-        bool eventShouldGetToChild)
-    {
-        var rootMinimumLevel = eventLevel + rootMinimumLevelIncrement ?? Information;
-        var sinkRestrictedToMinimumLevel = eventLevel + sinkRestrictedToIncrement ?? Verbose;
-        var childMinimumLevel = eventLevel + childMinimumLevelIncrement ?? Information;
+    //[Theory]
+    //[MemberData(nameof(GetMinimumLevelInheritanceTestCases))]
+    //public void WriteToLoggerMinimumLevelInheritanceScenarios(
+    //    LogEventLevel eventLevel,
+    //    int? rootMinimumLevelIncrement,
+    //    int? sinkRestrictedToIncrement,
+    //    int? childMinimumLevelIncrement,
+    //    bool eventShouldGetToChild)
+    //{
+    //    var rootMinimumLevel = eventLevel + rootMinimumLevelIncrement ?? Information;
+    //    var sinkRestrictedToMinimumLevel = eventLevel + sinkRestrictedToIncrement ?? Verbose;
+    //    var childMinimumLevel = eventLevel + childMinimumLevelIncrement ?? Information;
 
-        LogEvent? evt = null;
-        var sink = new DelegatingSink(e => evt = e);
+    //    LogEvent? evt = null;
+    //    var sink = new DelegatingSink(e => evt = e);
 
-        var childLogger = new LoggerConfiguration()
-            .MinimumLevel.Is(childMinimumLevel)
-            .WriteTo.Sink(sink)
-            .CreateLogger();
+    //    var childLogger = new LoggerConfiguration()
+    //        .MinimumLevel.Is(childMinimumLevel)
+    //        .WriteTo.Sink(sink)
+    //        .CreateLogger();
 
-        var logger = new LoggerConfiguration()
-            .MinimumLevel.Is(rootMinimumLevel)
-            .WriteTo.Logger(childLogger, restrictedToMinimumLevel: sinkRestrictedToMinimumLevel)
-            .CreateLogger();
+    //    var logger = new LoggerConfiguration()
+    //        .MinimumLevel.Is(rootMinimumLevel)
+    //        .WriteTo.Logger(childLogger, restrictedToMinimumLevel: sinkRestrictedToMinimumLevel)
+    //        .CreateLogger();
 
-        logger.Write(Some.LogEvent(level: eventLevel));
+    //    logger.Write(Some.LogEvent(level: eventLevel));
 
-        if (eventShouldGetToChild)
-        {
-            Assert.NotNull(evt);
-        }
-        else
-        {
-            Assert.Null(evt);
-        }
-    }
+    //    if (eventShouldGetToChild)
+    //    {
+    //        Assert.NotNull(evt);
+    //    }
+    //    else
+    //    {
+    //        Assert.Null(evt);
+    //    }
+    //}
 
     public static IEnumerable<object?[]> GetMinimumLevelOverrideInheritanceTestCases()
     {

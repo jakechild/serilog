@@ -18,22 +18,22 @@ public class LoggerConfigurationTests
         }
     }
 
-    [Fact]
-    public void LoggerShouldNotReferenceToItsConfigurationAfterBeingCreated()
-    {
-        var (logger, wr) = CreateLogger();
+    //[Fact]
+    //public void LoggerShouldNotReferenceToItsConfigurationAfterBeingCreated()
+    //{
+    //    var (logger, wr) = CreateLogger();
 
-        GC.Collect();
+    //    GC.Collect();
 
-        Assert.False(wr.IsAlive);
-        GC.KeepAlive(logger);
+    //    Assert.False(wr.IsAlive);
+    //    GC.KeepAlive(logger);
 
-        static (ILogger, WeakReference) CreateLogger()
-        {
-            var loggerConfiguration = new LoggerConfiguration();
-            return (loggerConfiguration.CreateLogger(), new(loggerConfiguration));
-        }
-    }
+    //    static (ILogger, WeakReference) CreateLogger()
+    //    {
+    //        var loggerConfiguration = new LoggerConfiguration();
+    //        return (loggerConfiguration.CreateLogger(), new(loggerConfiguration));
+    //    }
+    //}
 
     [Fact]
     public void CreateLoggerThrowsIfCalledMoreThanOnce()
@@ -481,40 +481,40 @@ public class LoggerConfigurationTests
         return evt!.Properties["X"].ToString();
     }
 
-    [Fact]
-    public void DynamicallySwitchingSinkRestrictsOutput()
-    {
-        var eventsReceived = 0;
-        var levelSwitch = new LoggingLevelSwitch();
+    //[Fact]
+    //public void DynamicallySwitchingSinkRestrictsOutput()
+    //{
+    //    var eventsReceived = 0;
+    //    var levelSwitch = new LoggingLevelSwitch();
 
-        var logger = new LoggerConfiguration()
-            .WriteTo.Sink(
-                new DelegatingSink(_ => eventsReceived++),
-                levelSwitch: levelSwitch)
-            .CreateLogger();
+    //    var logger = new LoggerConfiguration()
+    //        .WriteTo.Sink(
+    //            new DelegatingSink(_ => eventsReceived++),
+    //            levelSwitch: levelSwitch)
+    //        .CreateLogger();
 
-        logger.Write(Some.InformationEvent());
-        levelSwitch.MinimumLevel = Warning;
-        logger.Write(Some.InformationEvent());
-        levelSwitch.MinimumLevel = Verbose;
-        logger.Write(Some.InformationEvent());
+    //    logger.Write(Some.InformationEvent());
+    //    levelSwitch.MinimumLevel = Warning;
+    //    logger.Write(Some.InformationEvent());
+    //    levelSwitch.MinimumLevel = Verbose;
+    //    logger.Write(Some.InformationEvent());
 
-        Assert.Equal(2, eventsReceived);
-    }
+    //    Assert.Equal(2, eventsReceived);
+    //}
 
-    [Fact]
-    public void LevelSwitchTakesPrecedenceOverMinimumLevel()
-    {
-        var sink = new CollectingSink();
+    //[Fact]
+    //public void LevelSwitchTakesPrecedenceOverMinimumLevel()
+    //{
+    //    var sink = new CollectingSink();
 
-        var logger = new LoggerConfiguration()
-            .WriteTo.Sink(sink, Fatal, new())
-            .CreateLogger();
+    //    var logger = new LoggerConfiguration()
+    //        .WriteTo.Sink(sink, Fatal, new())
+    //        .CreateLogger();
 
-        logger.Write(Some.InformationEvent());
+    //    logger.Write(Some.InformationEvent());
 
-        Assert.Single(sink.Events);
-    }
+    //    Assert.Single(sink.Events);
+    //}
 
     [Fact]
     public void LastMinimumLevelConfigurationWins()

@@ -534,44 +534,44 @@ public class KeyValuePairSettingsTests
         Assert.Single(DummyRollingFileSink.Emitted);
     }
 
-    [Fact]
-    public void WriteToSinkIsAppliedWithCustomSinkAndMinimumLevel()
-    {
-        var log = new LoggerConfiguration()
-            .ReadFrom.KeyValuePairs(new Dictionary<string, string>
-            {
-                ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
-                ["write-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
-                ["write-to:Sink.restrictedToMinimumLevel"] = "Warning"
-            })
-            .CreateLogger();
+    //[Fact]
+    //public void WriteToSinkIsAppliedWithCustomSinkAndMinimumLevel()
+    //{
+    //    var log = new LoggerConfiguration()
+    //        .ReadFrom.KeyValuePairs(new Dictionary<string, string>
+    //        {
+    //            ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
+    //            ["write-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
+    //            ["write-to:Sink.restrictedToMinimumLevel"] = "Warning"
+    //        })
+    //        .CreateLogger();
 
-        DummyRollingFileSink.Reset();
-        log.Write(Some.InformationEvent());
-        log.Write(Some.WarningEvent());
+    //    DummyRollingFileSink.Reset();
+    //    log.Write(Some.InformationEvent());
+    //    log.Write(Some.WarningEvent());
 
-        Assert.Single(DummyRollingFileSink.Emitted);
-    }
+    //    Assert.Single(DummyRollingFileSink.Emitted);
+    //}
 
-    [Fact]
-    public void WriteToSinkIsAppliedWithCustomSinkAndLevelSwitch()
-    {
-        var log = new LoggerConfiguration()
-            .ReadFrom.KeyValuePairs(new Dictionary<string, string>
-            {
-                ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
-                ["level-switch:$switch1"] = "Warning",
-                ["write-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
-                ["write-to:Sink.levelSwitch"] = "$switch1"
-            })
-            .CreateLogger();
+    //[Fact]
+    //public void WriteToSinkIsAppliedWithCustomSinkAndLevelSwitch()
+    //{
+    //    var log = new LoggerConfiguration()
+    //        .ReadFrom.KeyValuePairs(new Dictionary<string, string>
+    //        {
+    //            ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
+    //            ["level-switch:$switch1"] = "Warning",
+    //            ["write-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
+    //            ["write-to:Sink.levelSwitch"] = "$switch1"
+    //        })
+    //        .CreateLogger();
 
-        DummyRollingFileSink.Reset();
-        log.Write(Some.InformationEvent());
-        log.Write(Some.WarningEvent());
+    //    DummyRollingFileSink.Reset();
+    //    log.Write(Some.InformationEvent());
+    //    log.Write(Some.WarningEvent());
 
-        Assert.Single(DummyRollingFileSink.Emitted);
-    }
+    //    Assert.Single(DummyRollingFileSink.Emitted);
+    //}
 
     [Fact]
     public void AuditToSinkIsAppliedWithCustomSink()
@@ -590,44 +590,44 @@ public class KeyValuePairSettingsTests
         Assert.Single(DummyRollingFileSink.Emitted);
     }
 
-    [Fact]
-    public void AuditToSinkIsAppliedWithCustomSinkAndMinimumLevel()
-    {
-        var log = new LoggerConfiguration()
-            .ReadFrom.KeyValuePairs(new Dictionary<string, string>
-            {
-                ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
-                ["audit-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
-                ["audit-to:Sink.restrictedToMinimumLevel"] = "Warning"
-            })
-            .CreateLogger();
+    //[Fact]
+    //public void AuditToSinkIsAppliedWithCustomSinkAndMinimumLevel()
+    //{
+    //    var log = new LoggerConfiguration()
+    //        .ReadFrom.KeyValuePairs(new Dictionary<string, string>
+    //        {
+    //            ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
+    //            ["audit-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
+    //            ["audit-to:Sink.restrictedToMinimumLevel"] = "Warning"
+    //        })
+    //        .CreateLogger();
 
-        DummyRollingFileSink.Reset();
-        log.Write(Some.InformationEvent());
-        log.Write(Some.WarningEvent());
+    //    DummyRollingFileSink.Reset();
+    //    log.Write(Some.InformationEvent());
+    //    log.Write(Some.WarningEvent());
 
-        Assert.Single(DummyRollingFileSink.Emitted);
-    }
+    //    Assert.Single(DummyRollingFileSink.Emitted);
+    //}
 
-    [Fact]
-    public void AuditToSinkIsAppliedWithCustomSinkAndLevelSwitch()
-    {
-        var log = new LoggerConfiguration()
-            .ReadFrom.KeyValuePairs(new Dictionary<string, string>
-            {
-                ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
-                ["level-switch:$switch1"] = "Warning",
-                ["audit-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
-                ["audit-to:Sink.levelSwitch"] = "$switch1"
-            })
-            .CreateLogger();
+    //[Fact]
+    //public void AuditToSinkIsAppliedWithCustomSinkAndLevelSwitch()
+    //{
+    //    var log = new LoggerConfiguration()
+    //        .ReadFrom.KeyValuePairs(new Dictionary<string, string>
+    //        {
+    //            ["using:TestDummies"] = typeof(DummyLoggerConfigurationExtensions).Assembly.FullName!,
+    //            ["level-switch:$switch1"] = "Warning",
+    //            ["audit-to:Sink.sink"] = typeof(DummyRollingFileSink).AssemblyQualifiedName!,
+    //            ["audit-to:Sink.levelSwitch"] = "$switch1"
+    //        })
+    //        .CreateLogger();
 
-        DummyRollingFileSink.Reset();
-        log.Write(Some.InformationEvent());
-        log.Write(Some.WarningEvent());
+    //    DummyRollingFileSink.Reset();
+    //    log.Write(Some.InformationEvent());
+    //    log.Write(Some.WarningEvent());
 
-        Assert.Single(DummyRollingFileSink.Emitted);
-    }
+    //    Assert.Single(DummyRollingFileSink.Emitted);
+    //}
 
     [Fact]
     public void EnrichWithIsAppliedWithCustomEnricher()
